@@ -73,7 +73,8 @@ public class NetworkUtils {
                     e.printStackTrace();
                 }
             }
-            Log.d(LOG_TAG, bookJson);
+            //Log.d(LOG_TAG, bookJson);
+            
             return bookJson;
         }
     }

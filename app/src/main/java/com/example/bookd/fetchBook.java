@@ -46,7 +46,9 @@ public class fetchBook extends AsyncTask<String,Void,String> {
                 JSONObject book = itemsArray.getJSONObject(i);
                 String title = null;
                 String authors = null;
-                //String pub = null;
+                String pub = null;
+                String urlim = null;
+                String desc = null;
 
 
 
@@ -54,12 +56,19 @@ public class fetchBook extends AsyncTask<String,Void,String> {
                 try {
                     title = volumeInfo.getString("title");
                     authors = volumeInfo.getString("authors");
-                    //pub = volumeInfo.getString("publisher");
+                    pub = volumeInfo.getString("publisher");
+                    desc = volumeInfo.getString("description");
+                    JSONObject urlobj = volumeInfo.getJSONObject("imageLinks");
+                    urlim = urlobj.getString("thumbnail");
+
+
 
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+                //
 
                 if (title != null && authors != null ) {
                     //text1.setText(title);
@@ -67,7 +76,8 @@ public class fetchBook extends AsyncTask<String,Void,String> {
 
 
 
-                    books.add(new String[] {title,authors});
+                    books.add(new String[] {title,authors,pub,urlim,desc});
+                    //Log.i("tag",books.get(0).toString());
 
 
 
@@ -75,11 +85,14 @@ public class fetchBook extends AsyncTask<String,Void,String> {
 
 
 
-                }else{
-                text1.setText("No results found!");
-                text2.setText("");
+                }else {
+                    text1.setText("No results found!");
+                    text2.setText("");
                 }
             }
+            //Log.d("TAG", "Type of obj: " + books.getClass().getName());
+
+            //Log.i("tag", Arrays.toString(books.get(0)));
 
 
 
